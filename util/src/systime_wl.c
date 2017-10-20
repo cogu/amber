@@ -88,7 +88,6 @@ static struct timespec timespec_subtract(struct  timespec  time1,struct  timespe
 #if defined(UNIT_TEST) || defined(SYSTIME_SIMULATED)
 void SysTime_initSimulated(void)
 {
-	m_isSimulated = 1u;
    SysTime_reset();
 }
 

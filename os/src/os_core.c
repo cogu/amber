@@ -28,7 +28,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // CONSTANTS AND DATA TYPES
 //////////////////////////////////////////////////////////////////////////////
-#ifndef SYSTIME_SIMULATED
+#if (!defined(SYSTIME_SIMULATED) && !defined(UNIT_TEST))
 static THREAD_PROTO(TimerEventWorker,arg);
 #endif
 //////////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ void os_start(void)
 
    startOsTasks();
    m_isRunning = 1;
-#ifndef SYSTIME_SIMULATED
+#if (!defined(SYSTIME_SIMULATED) && !defined(UNIT_TEST))
 # ifdef _MSC_VER
    THREAD_CREATE(m_thread_worker, TimerEventWorker, 0, m_threadId);
    if (m_thread_worker == INVALID_HANDLE_VALUE)
@@ -189,7 +189,7 @@ DYN_STATIC void os_scheduler_run(void)
    }
 }
 
-#ifndef SYSTIME_SIMULATED
+#if (!defined(SYSTIME_SIMULATED) && !defined(UNIT_TEST))
 THREAD_PROTO(TimerEventWorker,arg){
    SysTime_reset();
 
